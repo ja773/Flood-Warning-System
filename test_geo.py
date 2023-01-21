@@ -3,7 +3,7 @@
 from floodsystem.station import MonitoringStation
 import floodsystem.geo as geo
 
-def test_create_monitoring_station():
+def test_geo_functions():
 
     # Create a station
     s_id = "test-s-id"
@@ -35,3 +35,5 @@ def test_create_monitoring_station():
 
     assert geo.rivers_with_station([s1,s2,s3]) == set(['River X', 'River Y'])
     assert geo.stations_by_river([s1,s2,s3]) == {'River X': [s1,s2], 'River Y':[s3]}
+    assert geo.rivers_by_station_number([s1,s2,s3], 4) == [('River X',2),('River Y',1)]
+    assert geo.rivers_by_station_number([s1,s2,s3], 1) == [('River X',2)]
