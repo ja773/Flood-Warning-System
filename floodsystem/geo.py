@@ -6,8 +6,8 @@ geographical data.
 
 """
 
-from utils import sorted_by_key  # noqa
-#edited above line to "uitls" from ".utils"
+from .utils import sorted_by_key  # noqa
+#edited above line to "uitls" from ".utils". This broke tests, so I changed it back.
 
 
 def rivers_with_station(stations):
@@ -20,7 +20,7 @@ def stations_by_river(stations):
     to their monitoring stations'''
     retval = {}
     for i in stations:
-        if i.river in retval.keys:
+        if i.river in retval.keys():
             retval[i.river].append(i)
         else:
             retval[i.river] = [i]
