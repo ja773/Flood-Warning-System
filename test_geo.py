@@ -9,7 +9,7 @@ def test_geo_functions():
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "1"
-    coord = (-2.0, 4.0)
+    coord = (-3.0, 4.0)
     trange = (-2.3, 3.4445)
     river = "River X"
     town = "My Town"
@@ -18,7 +18,7 @@ def test_geo_functions():
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "2"
-    coord = (-2.0, 4.0)
+    coord = (-6.0, 8.0)
     trange = (-2.3, 3.4445)
     river = "River X"
     town = "My Town"
@@ -37,3 +37,4 @@ def test_geo_functions():
     assert geo.stations_by_river([s1,s2,s3]) == {'River X': [s1,s2], 'River Y':[s3]}
     assert geo.rivers_by_station_number([s1,s2,s3], 4) == [('River X',2),('River Y',1)]
     assert geo.rivers_by_station_number([s1,s2,s3], 1) == [('River X',2)]
+    assert geo.stations_by_distance([s1,s2], tuple([0.0,0.0])) == [('test-s-id', 5.0), ('test-s-id', 10.0)]

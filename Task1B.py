@@ -2,6 +2,7 @@ from floodsystem.geo import stations_by_distance
 from floodsystem.stationdata import build_station_list
 
 def run():
+    ''' Requirements for Task 1B'''
     stations = build_station_list()
     cambridge = 52.2053, 0.1218
     x = stations_by_distance(stations, cambridge)
@@ -17,6 +18,5 @@ def run():
     return tuplelist
 
 if __name__ == "__main__":
+    print("*** Task 1A: CUED Part IA Flood Warning System ***")
     run()
-
-
