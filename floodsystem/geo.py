@@ -6,10 +6,10 @@ geographical data.
 
 """
 
+from haversine import haversine
+
 from floodsystem.utils import sorted_by_key  # noqa
 #edited above line to "uitls" from ".utils". This broke tests, so I changed it back.
-
-from haversine import haversine
 
 
 def rivers_with_station(stations):
@@ -59,5 +59,17 @@ def stations_by_distance(stations, p):
     for i in stations:
         dis = haversine(i.coord, p)
         dists.append(tuple([i,dis]))
-    sorted_by_key(dists, 1)
+    dists = sorted_by_key(dists, 1)
     return dists
+
+def stations_within_radius(stations, centre, r):
+    ''' This function returns a list of all stations (type MonitoringStation) 
+    within radius r of a geographic coordinate x. '''
+
+    stats = stations_by_distance(stations, centre)
+    closest = []
+    for i in stats:
+        if i[1] <= r:
+            closest.append(i[0].name)
+    closest = sorted_by_key(closest, 0)
+    return closest
