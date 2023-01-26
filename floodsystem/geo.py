@@ -5,8 +5,13 @@
 geographical data.
 
 """
+try:
+    from haversine import haversine
+except:
+    from pip._internal import main as pipmain
+    pipmain(['install', 'haversine'])
+    from haversine import haversine
 
-from haversine import haversine
 
 from floodsystem.utils import sorted_by_key  # noqa
 #edited above line to "uitls" from ".utils". This broke tests, so I changed it back.
