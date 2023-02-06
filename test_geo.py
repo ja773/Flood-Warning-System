@@ -37,5 +37,5 @@ def test_geo_functions():
     assert geo.stations_by_river([s1,s2,s3]) == {'River X': [s1,s2], 'River Y':[s3]}
     assert geo.rivers_by_station_number([s1,s2,s3], 4) == [('River X',2),('River Y',1)]
     assert geo.rivers_by_station_number([s1,s2,s3], 1) == [('River X',2)]
-    assert geo.stations_by_distance([s1,s2], tuple([0.0,0.0])) == [(s1.name, 5.0), (s2.name, 10.0)]
-    assert geo.stations_within_radius([s1,s2,s3],(0.0,0.0),6.0) == [s1.name, s3.name]
+    assert geo.stations_by_distance([s1,s2], tuple([0.0,0.0])) == [(s1, 555.8127094148656), (s2, 1110.6467124323776)]
+    assert geo.stations_within_radius([s1,s2,s3],(0.0,0.0),600.0) == [s1, s3]

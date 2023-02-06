@@ -68,8 +68,10 @@ def stations_within_radius(stations, centre, r):
 
     stats = stations_by_distance(stations, centre)
     closest = []
+    names = []
     for i in stats:
         if i[1] <= r:
-            closest.append(i[0].name)
-    closest = sorted_by_key(closest, 0)
-    return closest
+            closest.append(i[0])
+            names.append(i[0].name)
+    names, closest = zip(*sorted_by_key(zip(names,closest), 0))
+    return list(closest)
