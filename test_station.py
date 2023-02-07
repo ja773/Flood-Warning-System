@@ -7,7 +7,7 @@ from floodsystem.station import MonitoringStation
 from floodsystem.station import inconsistent_typical_range_stations
 
 
-def test_create_monitoring_station():
+def test_station():
 
     # Create a station
    
