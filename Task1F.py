@@ -1,4 +1,3 @@
-from floodsystem.station import MonitoringStation
 from floodsystem.station import inconsistent_typical_range_stations
 from floodsystem import stationdata
 
