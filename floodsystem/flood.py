@@ -2,6 +2,7 @@
 
 import floodsystem.station
 from floodsystem.utils import sorted_by_key
+from floodsystem.stationdata import build_station_list
 
 def stations_level_over_threshold(stations,tol):
     ''' Given a list of stations and a tolerance value,
@@ -13,11 +14,11 @@ def stations_level_over_threshold(stations,tol):
     overtols = []
     for i in stations:
         if i not in inconsistents:
-            consistents.append(i)
+            if floodsystem.station.MonitoringStation.relative_water_level(i) is not None:
+                consistents.append(i)
     for i in consistents:
         if floodsystem.station.MonitoringStation.relative_water_level(i) > tol:
-            tup = tuple(i,floodsystem.station.MonitoringStation.relative_water_level(i))
+            tup = tuple([i,floodsystem.station.MonitoringStation.relative_water_level(i)])
             overtols.append(tup)
-    overtols = sorted_by_key(overtols,1)
+    overtols = sorted_by_key(overtols,1, True)
     return overtols
-    
