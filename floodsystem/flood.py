@@ -2,13 +2,14 @@
 
 import floodsystem.station
 from floodsystem.utils import sorted_by_key
-from floodsystem.stationdata import build_station_list
+from floodsystem.stationdata import update_water_levels
 
 def stations_level_over_threshold(stations,tol):
     ''' Given a list of stations and a tolerance value,
      returns a list of tuples containing stations and the 
      latest relative water level over the tolerance '''
     
+    update_water_levels(stations)
     inconsistents = floodsystem.station.inconsistent_typical_range_stations(stations)
     consistents = []
     overtols = []
@@ -22,3 +23,18 @@ def stations_level_over_threshold(stations,tol):
             overtols.append(tup)
     overtols = sorted_by_key(overtols,1, True)
     return overtols
+
+def stations_highest_rel_level(stations, N):
+    ''' Returns a list of the N stations (objects) 
+    at which the water level, relative to the typical range, is highest. '''
+
+    update_water_levels(stations)
+    statslevels = []
+    stats = []
+    for i in stations:
+        if floodsystem.station.MonitoringStation.relative_water_level(i) is not None:
+            statslevels.append([i,floodsystem.station.MonitoringStation.relative_water_level(i)])
+    statslevels = sorted_by_key(statslevels, 1, True)
+    for i in range(N):
+        stats.append(statslevels[i][0])
+    return stats
