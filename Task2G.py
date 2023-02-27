@@ -38,12 +38,13 @@ def run():
         if dates == [] or levels == []:
             continue
         poly, d0 = analysis.polyfit(dates, levels, 1)
-        soon = np.polyval(poly,matplotlib.dates.date2num(datetime.today() + timedelta(5)))
+        soon = np.polyval(poly,matplotlib.dates.date2num(datetime.today() + timedelta(5))-d0)
         typ = station.typical_range
         if rel(levels[-1],typ) >= 1:
             current_risk = True
         worse = poly[1] > 0
-        if rel(soon, typ) >= 1:
+        worst = rel(soon, typ)
+        if worst >= 1:
             soon_risk = True
                     
         if current_risk or soon_risk:
@@ -71,9 +72,9 @@ def run():
                 else:
                     print("is at a moderate risk of imminent flooding, with conditions expected to worsen in the near future.")
             else:
-                if (rel(worst[1],typ) > 3) and (worst[0]<=1):
+                if worst > 3:
                     print("is at a high risk of flooding in the near future.")
-                elif (rel(worst[1],typ) > 2 and worst[1]<=1):
+                elif worst > 1.5:
                     print("is at a moderate risk of flooding in the near future.")
                 else:
                     print("is at a low risk of flooding in the near future.")
