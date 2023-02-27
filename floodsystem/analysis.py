@@ -1,6 +1,7 @@
 """This module contains a collection of functions related to analysis"""
 import numpy as np
-import matplotlib
+import matplotlib, datetime
+from matplotlib import pyplot as plt
 def polyfit(dates, levels, p):
     '''takes waterlevel data over time, and returns a shifted polynomial that fits the data
     and the shift used. Useful to predict near fututre levels'''
