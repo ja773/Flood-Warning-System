@@ -28,10 +28,9 @@ def plot_water_level_with_fit(station, dates, levels, p):
     a graph, and adds reference high and low water lines. It also includes the best-fit
     polynomial.'''
     poly, d0 = analysis.polyfit(dates, levels, p)
-    print(d0)
     x = matplotlib.dates.date2num(dates)
     plt.plot(dates, poly(x-d0), label = "Best Fit")
-    plt.plot(dates, levels, '.', label = "Water Level")
+    plt.plot(dates, levels, label = "Water Level")
     (low, high) = station.typical_range
     plt.plot([dates[0], dates[-1]],[low,low], label = "Typical low water")
     plt.plot([dates[0], dates[-1]],[high,high], label = "Typical high water")
