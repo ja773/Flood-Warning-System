@@ -9,7 +9,6 @@ def stations_level_over_threshold(stations,tol):
      returns a list of tuples containing stations and the 
      latest relative water level over the tolerance '''
     
-    update_water_levels(stations)
     inconsistents = floodsystem.station.inconsistent_typical_range_stations(stations)
     consistents = []
     overtols = []
@@ -28,7 +27,6 @@ def stations_highest_rel_level(stations, N):
     ''' Returns a list of the N stations (objects) 
     at which the water level, relative to the typical range, is highest. '''
 
-    update_water_levels(stations)
     statslevels = []
     stats = []
     for i in stations:
