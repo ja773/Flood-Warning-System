@@ -7,6 +7,7 @@ def run():
 
     # Build list of stations
     stations = build_station_list()
+    flood.update_water_levels(stations)
 
     stations = flood.stations_highest_rel_level(stations, 5)
 
